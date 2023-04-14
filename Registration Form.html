@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Form</title>
+<style>
+  .background{
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    }
+
+  .error{
+      font-size: small;
+      color:red;
+    }
+
+  .nm-button{
+      color: black;
+      font-weight: bold;
+      font-size: 20px;
+      block-size: 30px;
+    }   
+</style>
+
+  <script>
+    var flag1=0, flag2=0, flag3=0, flag4=0, flag5=0;
+
+    function validateFormName(){
+
+      // First name and last name should not be empty
+      if(reg.fname.value==""){
+        flag5=1;
+        f1.innerText=" *First name is empty!";
+        f1.className="error";
+      }
+      else{
+        flag5=0;
+        f1.innerText="";
+      }
+    }
+
+    function validateFormName1(){  
+      if(reg.lname.value==""){
+        flag1=1;
+        l1.innerText=" *Last name is empty!";
+        l1.className="error";
+      }
+      else{
+        flag1=0;
+        fname.innerText="";
+        l1.innerText="";
+      }
+    }  
+    
+    function validateFormConfirm(){
+
+      // Password and re-type password must be the same
+      if(reg.password.value!=reg.confirmpassword.value){
+        flag2=1;
+        e1.innerText=" *Passwords do not match!";
+        e1.className="error";
+      } 
+      else{
+        flag2=0;
+        p2.innerText="";
+        e1.innerText="";
+      }
+    }
+    
+    function validateFormPassword(){
+
+      // Password must be a minimum of eight characters long consisting of a combination of uppercase letter, lowercase letter, and digits
+      const passwordRegex=/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8}$/;
+      if(reg.password.value.match(passwordRegex) || reg.password.value==""){
+        flag3=1;
+        e1.innerText=" *Password must be a minimum of eight characters long consisting of a combination of uppercase letter, lowercase letter, and digits!";
+        e1.className="error";
+      } 
+      else{
+        flag3=0;
+        p1.innerText="";
+        e1.innerText="";
+      }
+    }  
+
+    function validateFormEmail(){
+
+      // Email should be in the form of DDCCCDDD@nirmauni.ac.in
+      const emailRegex=/^[0-9a-zA-Z]+@[nN][iI][rR][mM][aA][uU][nN][iI]\.[aA][cC]\.[iI][nN]$/;
+      if(!emailRegex.test(email) || email =="") {
+        flag4=1;
+        m1.innerText=" *Please enter a valid email address in the form of DDCCCDDD@nirmauni.ac.in.";
+        m1.className="error";
+      } 
+      else{
+        flag4=0;
+        email.innerText=""
+        m1.innerText="";
+      }
+    }
+
+    function onsubmit(){
+      if(flag5==0 && flag1==0 && flag2==0 && flag3==0 && flag4==0){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+
+    function f3(){
+      if(age!="")
+        a1.innerText="";
+      if(phone!="")
+        ph1.innerText="";
+    }
+
+</script>
+
+</head>
+<body style="background-color:#fffff9";">
+<div class="background">
+   <h1 style="color:#76442e"><center>STUDENT REGISTRATION FORM</center></h1>
+<marquee behavior="alternate" speed="slow"><h5 style="color:#010101"><i><b>All the asterisk (<b style="color:red">*</b>) marked fields are to be filled compulsarily!</b></i></h5></marquee><hr>
+<pre><form action="registration.php" method="post" name="reg">
+<fieldset><legend style="background-color:#FCF3CF"><b>Enter your details</b></legend>
+<p style="color:#873e23;font-size: 20px;">
+        <label><b><span id="fname" style="color:red">*</span>Name:</b></label>   	  <input type="text" placeholder=" first name " id="fname1" onblur="validateFormName()" name="fname"> <b><span id="f1"></span></b>   <input type="text" placeholder="middle name" id="mname" name="mname">   <input type="text" placeholder=" last name " id="lname" onblur="validateFormName1()" name="lname"><b><span id="l1"></span></b><br> 
+        <label><b><span id="a1" style="color:red">*</span>Age:</b></label>          	  <input type="number" id="age" name="age" value="Age" min="0" max="120" onblur="f3()"><br>
+        <label><b>Gender:</b></label>	          <input type="radio" name="g" value="Male">Male
+      	   	          <input type="radio" name="g" value="Female">Female
+		          <input type="radio" name="g" value="Other">Other<br>
+        <label><b>Date of birth:</b></label>    <input type="date"><br>
+        <label><b><span id="p1" style="color:red">*</span>Password:</b></label>         <input type="password" name="password" onblur="validateFormPassword()"><br>
+        <label><b><span id="p2" style="color:red">*</span>Confirm Password:</b></label> <input type="password" name="confirmpassword" onblur="validateFormConfirm()">  <b><span id="e1"></span></b><br> 
+        <label for="phone"><b><span id="ph1" style="color:red">*</span>Phone No:</b></label>     	  <input type="tel" id="phone" name="phone" placeholder="091-1234567890" onblur="f3()"><br>
+        <label for="email"><b><span id="email" style="color:red">*</span>Email address:</b></label>	  <input type="email"rt name="email" onblur="validateFormEmail()"> <b><span id="m1"></span></b><br>	
+	<label><b>Hobbies:</b></label>  	  <input type="checkbox" name="h" value="badminton">Badminton
+		 	  <input type="checkbox" name="h" value="Cricket">Cricket
+		 	  <input type="checkbox" name="h" value="Basketball">Basketball
+		 	  <input type="checkbox" name="h" value="Singing">Singing
+		 	  <input type="checkbox" name="h" value="Dancing">Dancing
+		 	  <input type="checkbox" name="h" value="Poetry">Poetry
+		 	  <input type="checkbox" name="h" value="Photography">Photography
+		 	  <input type="checkbox" name="h" value="K-pop">K-pop
+		 	  <input type="checkbox" name="h" value="drama">K-drama
+		 	  <input type="checkbox" name="h" value="Anime">Anime
+		   	  <input type="checkbox" name="h" value="Music">Music
+		   	  <label for="comments">Anything else:</label>
+		 	  <textarea name="Others" id="comments" style="font-family:sans-serif;font-size:15"></textarea><br>
+	<label><b>Department:</b></label>       <input type="radio" name="d" value="CSE">CSE
+			  <input type="radio" name="d" value="EC">EC
+			  <input type="radio" name="d" value="Chem">Chemical
+			  <input type="radio" name="d" value="Mech">Mechanical
+			  <input type="radio" name="d" value="IC">IC
+			  <input type="radio" name="d" value="pharm">Pharmacy	
+			  <input type="radio" name="d" value="law">Law
+			  <input type="radio" name="d" value="ID">Design<br>
+        <label for=""><b><span id="quali" style="color:red">*</span>Qualification:</b></label>    <select name="quali">
+             <option value="">B.tech</option>
+            <option value="">M.tech</option>
+            <option value="">PhD</option>
+        </select><br>
+      	<label><b>Photo:</b></label>    	  <input type="file"><br>
+
+					<input type="SUBMIT" class="nm-button" value="Submit" onclick="return onsubmit();">		<input type="reset" class="nm-button"value="Clear All">
+<hr><br>
+	<b>Any Questions:</b><br>								<label><b>Rate your experience:</b></label>
+	<textarea name="comments" id="comments" style="font-family:sans-serif;font-size:15"></textarea>					<input type="range" min="0" max="5" value="0" onchange="o.value=this.value;">
+						 		 <output id="o">0</output>
+	
+	
+</p>
+</fieldset>        
+        </form>
+    </pre>
+</div>
+
+<script>
+  // First name and last name should accept letters only
+  function f2(){
+    if(event.keyCode>= 65 && event.keyCode<= 90 || event.keyCode==08){
+        console.log("Entered a-z");
+        return true;
+    }
+    else{
+        console.log("Other then a-z");
+        event.preventDefault();
+        return false;
+    }
+}
+  reg.fname.onkeydown=function(){
+    return f2();
+}
+
+  reg.mname.onkeydown=function(){
+    return f2();
+}
+
+  reg.lname.onkeydown=function(){
+    return f2();
+}
+</script>
+
+</body>
+</html>
