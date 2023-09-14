@@ -10,7 +10,7 @@ Explore this project to see a simple yet effective registration form in action.
 
 ## Usage
 
-1. Open the `index.html` file in your web browser.
+1. Open the `Registration Form.html` file in your web browser.
 2. Fill out the registration form.
 3. Observe the real-time validation feedback based on the rules mentioned above.
 4. Submit the form once all validation criteria are met.
